@@ -1,0 +1,6 @@
+# Données générées / dérivées (recréées par les scripts — voir README)
+data/*.csv
+
+# Python
+__pycache__/
+.venv/
