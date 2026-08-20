@@ -21,6 +21,21 @@ générées avec un `true_id` caché, jamais utilisé par le matching → l'éva
 
 ## 🧱 Démarche
 
+```mermaid
+flowchart LR
+    A[("Source A<br/>640 lignes")] --> STD["Standardisation<br/>casse, accents, tél, dates"]
+    B[("Source B<br/>640 lignes")] --> STD
+    STD --> BLOCK["Blocking<br/>email / tél / initiale"]
+    BLOCK --> SCORE["Scoring flou<br/>rapidfuzz"]
+    SCORE --> CLUSTER["Clustering<br/>union-find"]
+    CLUSTER --> GOLDEN[("813 golden records")]
+    CLUSTER --> TRACE["crosswalk.csv<br/>traçabilité"]
+
+    style GOLDEN fill:#137A8B,color:#fff
+    style A fill:#E4A93C,color:#1a1a1a
+    style B fill:#E4A93C,color:#1a1a1a
+```
+
 1. **Génération** de 2 exports clients incohérents ([`src/generate_sources.py`](src/generate_sources.py)) :
    casse, accents, ordre du nom, initiales, fautes, formats tél/date, champs manquants.
 2. **Standardisation** ([`src/dedupe.py`](src/dedupe.py)) : sans-accent, minuscule, téléphone
