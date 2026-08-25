@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  dedupe-pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install -r requirements.txt
+
+      - name: Générer les 2 sources clients
+        run: python src/generate_sources.py
+
+      - name: Dédoublonner (fuzzy matching + golden record)
+        run: python src/run.py
+
+      - name: Vérifier que la précision ne régresse pas (seuil 90 %)
+        run: |
+          python - <<'PY'
+          import re
+          text = open("docs/rapport-dedoublonnage.md", encoding="utf-8").read()
+          m = re.search(r"Précision \| ([\d.]+)%", text)
+          precision = float(m.group(1))
+          print(f"Précision mesurée : {precision}%")
+          assert precision >= 90, f"Précision {precision}% sous le seuil de 90%"
+          PY
