@@ -89,5 +89,5 @@ initiales/tronqués). Toute fusion est **traçable** via `crosswalk.csv`.
 
 ---
 
-*Projet 12 du [Portfolio Data](../). Entity resolution : créer une donnée de
+*Projet 12 du [Portfolio Data](https://github.com/valentinratigniet-byte). Entity resolution : créer une donnée de
 référence unique — impact direct facturation, RGPD, reporting.*
