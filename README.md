@@ -1,5 +1,7 @@
 # Projet 12 — Nettoyage, standardisation & dédoublonnage (golden record)
 
+[![CI](https://github.com/valentinratigniet-byte/projet-12-nettoyage-standardisation-dedoublonnage/actions/workflows/ci.yml/badge.svg)](https://github.com/valentinratigniet-byte/projet-12-nettoyage-standardisation-dedoublonnage/actions/workflows/ci.yml)
+
 > Deux systèmes, deux fichiers clients, des doublons partout : « Jean Dupont »,
 > « J. DUPONT », « dupont jean ». Ce projet fusionne des sources hétérogènes en un
 > **référentiel unique et fiable** (golden record) par *fuzzy matching*, avec des
